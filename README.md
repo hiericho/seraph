@@ -1,6 +1,6 @@
-# [Your Name]'s Personal Portfolio Website
+# Hiericho's personal archive.
 
-[![Website](https://img.shields.io/badge/Website-Live-brightgreen)](https://hiericho.github.io/website/)
+[![Website](https://img.shields.io/badge/Website-Live-brightgreen)](https://hiericho.github.io/seraph/)
 <!-- Optional: Add other badges like build status, license, etc. if applicable -->
 <!-- e.g., [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) -->
 
