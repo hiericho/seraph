@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seraph's Archives</title>
+
+    <!-- FAVICON EXAMPLE: -->
+    <!-- <link rel="icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon"> -->
+    <link rel="icon" href="{{ url_for('static', filename='toro.jpg') }}" type="image/png">
+    <!-- <link rel="icon" href="{{ url_for('static', filename='favicon.svg') }}" type="image/svg+xml"> -->
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- HOW TO ADD MORE FONT AWESOME ICONS: ... -->
+
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.5;
+            margin: 0;
+            padding: 30px 20px;
+            background-color: #fcf8e3;
+            color: #8B7355; /* Dark Beige/Tan */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 650px;
+            width: 100%;
+            margin: 0;
+            background: #f5f0e1;
+            padding: 20px 35px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(181, 136, 99, 0.15);
+            border: 1px solid #e0d8c4;
+        }
+        h1, h2 {
+            padding-bottom: 4px;
+            margin-top: 0;
+            margin-bottom: 12px;
+        }
+        h1 {
+            text-align: center;
+            border-bottom: none;
+            font-size: 2.2em;
+            margin-bottom: 25px; /* More space after title */
+        }
+        h2 {
+            border-bottom: 2px solid #d4c8a9;
+            font-size: 1.6em;
+        }
+
+        /* --- About Me Section Layout (Pic Left, Text Right) --- */
+        #about {
+             display: flex; /* Make this section a flex container */
+             align-items: center; /* Vertically center items */
+             gap: 25px; /* Space between pic and text block */
+             margin-bottom: 25px; /* Space below the about section */
+        }
+        .profile-pic {
+             /* Profile Pic as Flex Item */
+             display: block; /* Still needed for object-fit */
+             width: 160px;
+             height: 160px;
+             border-radius: 8px;
+             object-fit: cover;
+             border: 3px solid #d4c8a9;
+             flex-shrink: 0; /* Prevent image from shrinking */
+             /* Removed centering margin */
+        }
+        .about-content {
+            /* Text block as Flex Item */
+             flex-grow: 1; /* Allow text to take remaining space */
+        }
+        .about-content h2 {
+            margin-top: 0; /* Ensure no extra space above */
+            margin-bottom: 8px;
+        }
+        .about-content p {
+             font-size: 1.0em;
+             margin-bottom: 0;
+             margin-top: 0;
+        }
+        /* ------------------------------------------------------- */
+
+        a {
+            color: #70543E;
+            text-decoration: none;
+            font-weight: bold;
+            word-break: break-word;
+        }
+        a:hover, a:focus {
+            color: #5a4431;
+            text-decoration: underline;
+        }
+        a.copy-link {
+            cursor: pointer;
+        }
+
+        /* --- Grid Layout (Applied to both Interests and Contact) --- */
+        .contact-grid { /* Renaming might be better, but keep for now */
+            list-style: none;
+            padding-left: 0;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .contact-grid li {
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .contact-grid li:nth-child(odd) {
+            padding-right: 15px; /* Space between columns */
+        }
+        /* ----------------------------------------------------------- */
+
+        #interests {
+             margin-bottom: 25px; /* Space below interests section */
+        }
+         /* Remove specific ul/li styles for #interests if using .contact-grid */
+
+
+        .fa-fw {
+             margin-right: 8px;
+             font-size: 1.0em;
+             width: 1.2em;
+             text-align: center;
+             flex-shrink: 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 10px;
+            border-top: 1px solid #e0d8c4;
+            font-size: 0.9em;
+        }
+        .inline-icon {
+             width: 18px;
+             height: 18px;
+             vertical-align: middle;
+             margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+
+        <h1>
+             <i class="fa-solid fa-cat fa-fw"></i> Welcome to the seraph's archives!
+        </h1>
+
+        <!-- About section now contains the image and text content side-by-side -->
+        <section id="about">
+            <img src="{{ url_for('static', filename='me.png') }}" alt="A person with a cat hat, wearing all beige clothing and using their hand to hide their face." class="profile-pic">
+            <div class="about-content">
+                <h2><i class="fa-solid fa-paw fa-fw"></i>About Me</h2>
+                <p>
+                    Hiho! I'm Hiericho (It is pronounced like Jericho!). I am a electronics engineer, with a passion for programming, coding, and technology.
+                    I am the plant based tech angel! I also enjoy exploring new technologies and contributing to open-source projects.
+                    I am currently learning about web development and machine learning.
+                    I love to share my knowledge and help others in the community. I also enjoy participating in hackathons and tech meetups. I also draw, from time to time.
+                </p>
+            </div>
+        </section>
+
+        <section id="interests">
+            <h2><i class="fa-solid fa-seedling fa-fw"></i>Interests / Hobbies</h2>
+            <!-- Apply the same grid class here -->
+            <ul class="contact-grid">
+                <li><i class="fa-solid fa-code fa-fw"></i>Programming!</li>
+                <li><i class="fa-solid fa-language fa-fw"></i>Learning languages!</li>
+                <li><i class="fa-solid fa-book-open fa-fw"></i>Reading!</li>
+                <li><i class="fa-solid fa-paint-brush fa-fw"></i>Drawing!</li>
+            </ul>
+        </section>
+
+        <section id="contact">
+            <h2><i class="fa-solid fa-paper-plane fa-fw"></i>Contact / Links</h2>
+            <p>
+                You can find me online here:
+            </p>
+            <ul class="contact-grid">
+                <li>
+                    <i class="fa-solid fa-envelope fa-fw"></i>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hierichovieytes@gmail.com" target="_blank" rel="noopener noreferrer">Email Me!</a>
+                </li>
+                <li>
+                    <i class="fa-brands fa-discord fa-fw"></i>
+                    <a href="javascript:void(0);" onclick="copyToClipboard('@hiericho')" class="copy-link" title="Copy Discord Username">
+                        Discord: @hiericho
+                    </a>
+                </li>
+                <li>
+                    <i class="fa-brands fa-github fa-fw"></i><a href="https://github.com/hiericho" target="_blank" rel="noopener noreferrer">GitHub</a>
+                </li>
+                <li>
+                    <i class="fa-brands fa-instagram fa-fw"></i>
+                    <a href="https://instagram.com/hieraltair" target="_blank" rel="noopener noreferrer">Instagram (@hieraltair)</a>
+                </li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>© 2025 HAVN</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript for Copy to Clipboard -->
+    <script>
+        function copyToClipboard(text) {
+            navigator.clipboard.writeText(text).then(function() {
+                alert("Discord username copied: " + text);
+            }, function(err) {
+                alert('Could not copy text: ', err);
+            });
+        }
+    </script>
+
+</body>
+</html>
