@@ -10,73 +10,83 @@
     --profile-pic-border: #d4c8a9;
     --link-color: #70543E;
     --link-hover-color: #5a4431;
-    --icon-color: #8B7355; /* Same as text or can be specific */
+    --icon-color: #8B7355;
     --button-bg: #d4c8a9;
     --button-text: #5a4431;
     --button-hover-bg: #c8bda0;
+    --nav-active-bg: #70543E; /* Darker, like link color for active nav */
+    --nav-active-text: #fcf8e3; /* Light text for active nav */
 }
 
 [data-theme="dark"] {
     /* Dark Theme Variables */
-    --bg-color: #2c2821; /* Dark desaturated brown/khaki */
-    --text-color: #d4c8a9; /* Light beige/off-white */
-    --container-bg: #3a332a; /* Slightly lighter dark */
-    --container-border: #4a433a; /* Darker border for subtle separation */
-    --container-shadow: rgba(0, 0, 0, 0.25); /* Darker, more neutral shadow */
-    --heading-border-color: #5a4f40; /* Muted dark border */
+    --bg-color: #2c2821;
+    --text-color: #d4c8a9;
+    --container-bg: #3a332a;
+    --container-border: #4a433a;
+    --container-shadow: rgba(0, 0, 0, 0.25);
+    --heading-border-color: #5a4f40;
     --profile-pic-border: #5a4f40;
-    --link-color: #b8a28a; /* Lighter tan for links */
+    --link-color: #b8a28a;
     --link-hover-color: #cfbea7;
     --icon-color: #d4c8a9;
     --button-bg: #5a4f40;
     --button-text: #d4c8a9;
     --button-hover-bg: #6b5f4f;
+    --nav-active-bg: #b8a28a; /* Lighter tan for active nav in dark mode */
+    --nav-active-text: #2c2821; /* Dark text for active nav in dark mode */
 }
 
 body {
     font-family: sans-serif;
     line-height: 1.5;
     margin: 0;
-    padding: 30px 20px;
+    padding: 20px; /* Reduced body padding */
     background-color: var(--bg-color);
     color: var(--text-color);
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     min-height: 100vh;
+    box-sizing: border-box;
     transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
-    max-width: 650px;
+    max-width: 700px; /* Slightly wider if needed */
     width: 100%;
-    margin: 0;
     background: var(--container-bg);
-    padding: 20px 35px;
-    border-radius: 10px;
+    padding: 25px 25px; /* Adjusted padding */
+    border-radius: 12px; /* Slightly larger radius for container */
     box-shadow: 0 5px 20px var(--container-shadow);
     border: 1px solid var(--container-border);
     transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
 h1, h2 {
     padding-bottom: 4px;
     margin-top: 0;
     margin-bottom: 12px;
-    color: var(--text-color); /* Ensure headings also use text color variable */
+    color: var(--text-color);
+    text-align: start; /* Default for main H1 and section H2s */
 }
 
-h1 {
+h1 { /* Main page title (e.g., "Welcome...", "My Projects", "Get in Touch") */
     text-align: center;
     border-bottom: none;
-    font-size: 2.2em;
+    font-size: 2em; /* Adjusted font size */
     margin-bottom: 25px;
 }
 
-h2 {
+h2 { /* Section titles (e.g., "About Me", "Connect With Me") */
     border-bottom: 2px solid var(--heading-border-color);
-    font-size: 1.6em;
+    font-size: 1.5em; /* Adjusted font size */
     transition: border-color 0.3s ease;
+    text-align: start; /* Default for section H2s */
+    margin-bottom: 15px; /* Added more space below H2 */
 }
 
 /* --- About Me Section Layout --- */
@@ -88,11 +98,11 @@ h2 {
 }
 .profile-pic {
      display: block;
-     width: 160px;
-     height: 160px;
+     width: 165px;
+     height: 165px;
      border-radius: 8px;
      object-fit: cover;
-     border: 3px solid var(--profile-pic-border);
+     border: 4px solid var(--profile-pic-border);
      flex-shrink: 0;
      transition: border-color 0.3s ease;
 }
@@ -107,6 +117,7 @@ h2 {
      font-size: 1.0em;
      margin-bottom: 0;
      margin-top: 0;
+     text-align: justify; /* Ensure paragraphs within about are left-aligned */
 }
 
 a {
@@ -124,29 +135,76 @@ a.copy-link {
     cursor: pointer;
 }
 
+/* --- General Content Sections --- */
+#about, #interests, #contact-info, #project-list, .page-header + section {
+    flex-shrink: 0;
+    width: 100%; /* Ensure sections take full width of container */
+}
+#project-list, #contact-info { /* Sections that might be short but need to push footer */
+    flex-grow: 1;
+}
+
+/* Default paragraph alignment within sections */
+section p {
+    text-align: left;
+    margin-bottom: 1em; /* Add default bottom margin to paragraphs */
+}
+section p:last-child {
+    margin-bottom: 0; /* Remove bottom margin from last paragraph in a section */
+}
+
+
 /* --- Grid Layout (Interests and Contact) --- */
 .contact-grid {
     list-style: none;
     padding-left: 0;
-    margin-top: 5px;
-    margin-bottom: 15px;
+    margin-top: 20px;
+    margin-bottom: 25px; /* Increased bottom margin */
     display: flex;
     flex-wrap: wrap;
+    gap: 15px 20px; /* Row gap, Column gap */
+    justify-content: justify; /* Center grid items */
 }
 .contact-grid li {
-    width: 50%;
     box-sizing: border-box;
-    margin-bottom: 10px;
     display: flex;
     align-items: center;
+    flex-basis: calc(50% - 10px); /* Allow natural sizing */
+    flex-grow: 0; /* Don't force growth */
+    flex-shrink: 1;
+    /* To ensure items don't get too small and look good when centered: */
+    min-width: 200px; /* Example: adjust based on typical content length */
+    padding: 5px 0; /* Add some vertical padding to list items */
 }
-.contact-grid li:nth-child(odd) {
-    padding-right: 15px;
+.contact-grid li .fa-fw { /* Ensure icon aligns with text */
+    flex-shrink: 0;
 }
+
+/* Specific alignments for Contact page based on screenshot */
+#contact-info > h2,
+#contact-info > p:first-of-type {
+    text-align: left;
+    width: 100%;
+}
+/* For the "I'm usually most responsive..." paragraph */
+#contact-info > p.centered-responsive-note,
+#contact-info > p:last-of-type:not(:first-of-type) { /* Target last p if not also first */
+    text-align: center;
+    width: 100%;
+    margin-top: 25px;
+    opacity: 0.8;
+    font-size: 0.9em;
+}
+
 
 #interests {
      margin-bottom: 25px;
 }
+#interests .contact-grid li { /* Style for interests list if different */
+    min-width: auto; /* Allow interests to be smaller if needed */
+    flex-basis: auto;
+}
+
 
 .fa-fw {
      margin-right: 8px;
@@ -154,31 +212,32 @@ a.copy-link {
      width: 1.2em;
      text-align: center;
      flex-shrink: 0;
-     color: var(--icon-color); /* Use icon color variable */
+     color: var(--icon-color);
      transition: color 0.3s ease;
 }
 
 footer {
     text-align: center;
-    margin-top: 20px;
-    padding-top: 10px;
-    border-top: 1px solid var(--container-border); /* Use container border for consistency */
+    margin-top: auto;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-top: 1px solid var(--container-border);
     font-size: 0.9em;
     transition: border-color 0.3s ease;
+    width: 100%;
+    box-sizing: border-box;
 }
 .inline-icon {
      width: 18px;
      height: 18px;
      vertical-align: middle;
      margin-right: 8px;
-     /* For SVG icons, you might need to set fill: var(--icon-color); */
 }
 
 /* Theme Toggle Button Style */
 #themeToggle {
-    position: fixed; /* Or absolute, depending on where you place it */
-    top: 15px;
-    right: 20px;
+    align-self: flex-end;
+    margin: 0 0 15px 0; /* Placed above container if body is flex-column */
     padding: 8px 12px;
     background-color: var(--button-bg);
     color: var(--button-text);
@@ -196,12 +255,165 @@ footer {
 #themeToggle .fa-moon {
     margin-right: 5px;
 }
-
-/* Hide one icon based on theme (JS will toggle this class on the button or icons) */
-/* Example: if button has class "dark-active", hide sun, show moon */
-.dark-active .fa-sun { display: none; }
-.light-active .fa-moon { display: none; }
-/* Default (light) show sun, hide moon if no specific active class */
 #themeToggle .fa-moon { display: none; }
 #themeToggle.dark-active .fa-moon { display: inline-block; }
 #themeToggle.dark-active .fa-sun { display: none; }
+
+/* --- Main Navigation --- */
+.main-nav {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+    padding-bottom: 0;
+    border-bottom: none;
+    flex-wrap: wrap;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    border: 1px solid var(--container-border);
+    padding: 10px 15px; /* Adjusted padding */
+    border-radius: 8px; /* Adjusted radius */
+    font-weight: bold;
+    font-size: 0.95em; /* Adjusted font size */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 90px; /* Adjusted min-width */
+    text-align: center;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
+}
+.main-nav a .fa-fw {
+    margin-right: 6px; /* Adjusted margin */
+}
+
+.main-nav a:hover,
+.main-nav a:focus {
+    color: var(--link-hover-color);
+    background-color: var(--container-border);
+    text-decoration: none;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px var(--container-shadow);
+}
+
+.main-nav a.active {
+    color: var(--nav-active-text);
+    background-color: var(--nav-active-bg);
+    border-color: var(--nav-active-bg); /* Match border with background */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    pointer-events: none;
+}
+.main-nav a.active:hover {
+    transform: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.main-nav a.active .fa-fw {
+    color: inherit;
+}
+
+
+/* --- Project List & Squares --- */
+#project-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Further reduced min size for squares */
+    gap: 20px; /* Slightly reduced gap */
+    margin-top: 20px;
+}
+
+.project-square {
+    background-color: var(--container-bg);
+    border: 1px solid var(--container-border);
+    border-radius: 10px; /* Adjusted radius */
+    padding: 15px; /* Adjusted padding */
+    text-align: center;
+    position: relative;
+    aspect-ratio: 2 / 1;
+    display: flex;
+    flex-direction: row-reverse;
+    transition: transform 0.6s ease-in-out, box-shadow 0.5s ease-in-out;
+    overflow: hidden;
+}
+
+.project-square:hover,
+.project-square:focus-within {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 8px 25px var(--container-shadow);
+}
+
+.project-square-main-link {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+    width: 100%;
+    height: 100%;
+    padding-bottom: 20px; /* Space for GitHub icon */
+}
+
+.project-square-icon-container {
+    margin-bottom: 10px; /* Reduced margin */
+}
+
+.project-square-icon-container i {
+    font-size: 2.5em; /* Adjusted icon size */
+    color: var(--link-color);
+    transition: transform 0.2s ease;
+}
+
+.project-square:hover .project-square-icon-container i,
+.project-square:focus-within .project-square-icon-container i {
+    transform: scale(1.1);
+}
+
+.project-square-title {
+    font-size: 1.1em; /* Adjusted font size */
+    color: var(--text-color);
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.project-square-tech {
+    display: block;
+    font-size: 0.75em; /* Adjusted font size */
+    color: var(--text-color);
+    opacity: 0.7;
+    margin-bottom: 6px; /* Adjusted margin */
+    line-height: 1.3;
+    max-height: 2.6em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.project-square-action-text {
+    font-size: 0.85em; /* Adjusted font size */
+    color: var(--link-color);
+    opacity: 0.8;
+    margin-top: auto; /* Pushes action text towards the bottom */
+}
+
+.project-square-github-link {
+    position: absolute;
+    bottom: 12px; /* Adjusted position */
+    right: 12px;  /* Adjusted position */
+    color: var(--icon-color);
+    font-size: 1.3em; /* Adjusted icon size */
+    opacity: 0.6;
+    transition: opacity 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.project-square-github-link:hover,
+.project-square-github-link:focus {
+    opacity: 1;
+    color: var(--link-hover-color);
+    transform: scale(1.1);
+}
+
+.project-square-github-link i {
+    text-decoration: none;
+}

@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<!-- data-theme attribute will be managed by JavaScript -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seraph's Archives</title>
+    <title>Contact</title>
 
     <!-- Favicon -->
     <link rel="icon" href="static/toro.jpg" type="image/png">
@@ -14,7 +13,6 @@
 
     <!-- Link to your external stylesheet -->
     <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
     <!-- Theme Toggle Button -->
@@ -24,45 +22,57 @@
     </button>
 
     <div class="container">
-                <header class="page-header">
+        <header class="page-header">
             <nav class="main-nav">
-                <a href="index.html" class="active"><i class="fa-solid fa-house fa-fw"></i>Home</a>
+                <a href="index.html"><i class="fa-solid fa-house fa-fw"></i>Home</a>
                 <a href="projects.html"><i class="fa-solid fa-briefcase fa-fw"></i>Projects</a>
-                <a href="contact.html"><i class="fa-solid fa-envelope fa-fw"></i>Contact</a>
+                <a href="contact.html" class="active"><i class="fa-solid fa-envelope fa-fw"></i>Contact</a>
             </nav>
+            <h1><i class="fa-solid fa-comments fa-fw"></i>Get in Touch</h1>
         </header>
-        <h1>
-             <i class="fa-solid fa-cat fa-fw"></i> Welcome to the seraph's archives!
-        </h1>
 
-        <section id="about">
-            <img src="static/me.png" alt="A person with a cat hat, wearing all beige clothing and using their hand to hide their face." class="profile-pic">
-            <div class="about-content">
-                <h2><i class="fa-solid fa-paw fa-fw"></i>About Me</h2>
-                <p>
-                    Hiho! I'm Hiericho (It is pronounced like Jericho!). I am an electronics engineer, with a passion for programming, coding, and technology.
-                    I am the plant based tech angel! I also enjoy exploring new technologies and contributing to open-source projects.
-                    I am currently learning about web development and machine learning.
-                    I love to share my knowledge and help others in the community. I also enjoy participating in hackathons and tech meetups. I also draw, from time to time.
-                </p>
-            </div>
-        </section>
-
-        <section id="interests">
-            <h2><i class="fa-solid fa-seedling fa-fw"></i>Interests / Hobbies</h2>
+        <section id="contact-info">
+            <!-- This section is similar to the one on index.html -->
+            <h2><i class="fa-solid fa-paper-plane fa-fw"></i>Connect With Me</h2>
+            <p>
+                You can find me online or reach out through the following channels:
+            </p>
             <ul class="contact-grid">
-                <li><i class="fa-solid fa-code fa-fw"></i>Programming!</li>
-                <li><i class="fa-solid fa-language fa-fw"></i>Learning languages!</li>
-                <li><i class="fa-solid fa-book-open fa-fw"></i>Reading!</li>
-                <li><i class="fa-solid fa-paint-brush fa-fw"></i>Drawing!</li>
+                <li>
+                    <i class="fa-solid fa-envelope fa-fw"></i>
+                    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=hierichovieytes@gmail.com" target="_blank" rel="noopener noreferrer">Email Me!</a>
+                </li>
+                <li>
+                    <i class="fa-brands fa-discord fa-fw"></i>
+                    <a href="javascript:void(0);" onclick="copyToClipboard('@hiericho')" class="copy-link" title="Copy Discord Username">
+                        Discord: @hiericho
+                    </a>
+                </li>
+                <li>
+                    <i class="fa-brands fa-github fa-fw"></i><a href="https://github.com/hiericho" target="_blank" rel="noopener noreferrer">GitHub Profile</a>
+                </li>
+                <li>
+                    <i class="fa-brands fa-instagram fa-fw"></i>
+                    <a href="https://instagram.com/hieraltair" target="_blank" rel="noopener noreferrer">Instagram (@hieraltair)</a>
+                </li>
+                <li>
+                    <i class="fa-brands fa-linkedin fa-fw"></i>
+                    <a href="https://www.linkedin.com/in/hiericho-vieytes-norambuena-256744365/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                </li>
             </ul>
+
+            <!-- Optional: A brief message about response times or preferred contact method -->
+            <p style="text-align: center; margin-top: 25px; opacity: 0.8; font-size: 0.9em;">
+                I'm usually most responsive via Email or Discord.
+            </p>
         </section>
+
         <footer>
             <p>© 2025 HAVN</p>
         </footer>
     </div>
 
-    <!-- JavaScript for Copy to Clipboard AND Theme Toggle -->
+    <!-- JavaScript (Same as other pages for theme toggle and copy to clipboard) -->
     <script>
         // Copy to Clipboard Function
         function copyToClipboard(text) {
@@ -75,13 +85,11 @@
 
         // Theme Toggle Functionality
         const themeToggle = document.getElementById('themeToggle');
-        const htmlElement = document.documentElement; // Target the <html> element
+        const htmlElement = document.documentElement;
         const sunIcon = themeToggle.querySelector('.fa-sun');
         const moonIcon = themeToggle.querySelector('.fa-moon');
         const themeTexts = themeToggle.querySelectorAll('.theme-text');
 
-
-        // Function to apply the theme
         function applyTheme(theme) {
             htmlElement.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
@@ -92,7 +100,6 @@
                 themeTexts[1].style.display = 'inline-block';
                 themeToggle.classList.add('dark-active');
                 themeToggle.classList.remove('light-active');
-
             } else {
                 sunIcon.style.display = 'inline-block';
                 themeTexts[0].style.display = 'inline-block';
@@ -103,7 +110,6 @@
             }
         }
 
-        // Check for saved theme in localStorage or OS preference
         let currentTheme = localStorage.getItem('theme');
         const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -112,25 +118,19 @@
         } else if (prefersDarkScheme.matches) {
             applyTheme('dark');
         } else {
-            applyTheme('light'); // Default to light
+            applyTheme('light');
         }
 
-        // Event listener for the toggle button
         themeToggle.addEventListener('click', () => {
             let newTheme = htmlElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
             applyTheme(newTheme);
         });
 
-        // Listen for OS theme changes (optional, if you want it to adapt dynamically without manual toggle overriding)
         prefersDarkScheme.addEventListener('change', (e) => {
-            // Only apply if no theme is manually set in localStorage,
-            // or if you want OS preference to always override if it changes
             if (!localStorage.getItem('theme')) {
                  applyTheme(e.matches ? 'dark' : 'light');
             }
         });
-
     </script>
-
 </body>
-</html>
+</html> 
