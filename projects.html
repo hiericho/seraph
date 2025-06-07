@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="static/toro.jpg" type="image/png">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- Link to your external stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button id="themeToggle" title="Toggle theme">
+        <i class="fas fa-sun"></i> <span class="theme-text">Light</span>
+        <i class="fas fa-moon"></i> <span class="theme-text" style="display:none;">Dark</span>
+    </button>
+
+    <div class="container">
+        <header class="page-header">
+            <nav class="main-nav">
+                <a href="index.html"><i class="fa-solid fa-house fa-fw"></i>Home</a>
+                <a href="projects.html" class="active"><i class="fa-solid fa-briefcase fa-fw"></i>Projects</a>
+                <!-- Add other links here if needed, e.g., Contact -->
+            </nav>
+            <h1><i class="fa-solid fa-laptop-code fa-fw"></i>My Projects</h1>
+        </header>
+
+        <section id="project-list">
+            <!-- Project 1: Torobot -->
+            <article class="project-card">
+                <h3><i class="fa-solid fa-robot fa-fw"></i>Torobot</h3>
+                <p class="project-description">
+                    A Discord bot that predicts NBA matches, utilizing stats, machine learning, and comprehensive team/player information.
+                </p>
+                <p class="project-tech"><strong>Technologies:</strong> Python, Machine Learning</p>
+                <div class="project-links">
+                    <a href="https://github.com/hiericho/torobot" target="_blank" rel="noopener noreferrer" class="button-link">
+                        <i class="fa-brands fa-github fa-fw"></i>View on GitHub
+                    </a>
+                    <!-- No live demo for this one typically -->
+                </div>
+            </article>
+
+            <!-- Project 2: Spotime -->
+            <article class="project-card">
+                <h3><i class="fa-solid fa-music fa-fw"></i>Spotime</h3>
+                <p class="project-description">
+                    A Python script that fetches and displays lyrics synced with the currently playing song on Spotify.
+                </p>
+                <p class="project-tech"><strong>Technologies:</strong> Python, Spotify API</p>
+                <div class="project-links">
+                    <a href="https://github.com/hiericho/spotime" target="_blank" rel="noopener noreferrer" class="button-link">
+                        <i class="fa-brands fa-github fa-fw"></i>View on GitHub
+                    </a>
+                </div>
+            </article>
+
+            <!-- Project 3: Transcriber -->
+            <article class="project-card">
+                <h3><i class="fa-solid fa-language fa-fw"></i>Transcriber</h3>
+                <p class="project-description">
+                    A browser-based transliteration tool for various historical, cultural, and coded scripts. Features a minimalist design, dark mode, and supports scripts like Cyrillic, Runic, Ogham, Japanese Kana, Ethiopic, and more. Runs entirely client-side.
+                </p>
+                <p class="project-tech"><strong>Technologies:</strong> JavaScript, HTML, CSS</p>
+                <div class="project-links">
+                    <a href="https://github.com/hiericho/transcriber" target="_blank" rel="noopener noreferrer" class="button-link">
+                        <i class="fa-brands fa-github fa-fw"></i>View on GitHub
+                    </a>
+                    <a href="https://hiericho.github.io/transcriber/" target="_blank" rel="noopener noreferrer" class="button-link">
+                        <i class="fa-solid fa-arrow-up-right-from-square fa-fw"></i>Live Demo
+                    </a>
+                    <!-- Assuming your transcriber is hosted at hiericho.github.io/transcriber/ -->
+                    <!-- If not, remove or update this link -->
+                </div>
+            </article>
+
+            <!-- Project 4: Keyboard Tester -->
+            <article class="project-card">
+                <h3><i class="fa-solid fa-keyboard fa-fw"></i>Keyboard Tester</h3>
+                <p class="project-description">
+                    Python Visual Keyboard Tester: Test keyboard layouts, log key events, and visualize presses with extensive layout support (QWERTY, Dvorak, Colemak, AZERTY, etc.). Built with Tkinter.
+                </p>
+                <p class="project-tech"><strong>Technologies:</strong> Python, Tkinter</p>
+                <div class="project-links">
+                    <a href="https://github.com/hiericho/keyboardtesterpy" target="_blank" rel="noopener noreferrer" class="button-link">
+                        <i class="fa-brands fa-github fa-fw"></i>View on GitHub
+                    </a>
+                </div>
+            </article>
+
+        </section>
+
+        <footer>
+            <p>© 2025 HAVN</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript (Same as index.html for theme toggle and copy to clipboard) -->
+    <script>
+        // Copy to Clipboard Function (if needed on this page, otherwise remove)
+        // function copyToClipboard(text) {
+        //     navigator.clipboard.writeText(text).then(function() {
+        //         alert("Copied: " + text);
+        //     }, function(err) {
+        //         alert('Could not copy text: ' + err);
+        //     });
+        // }
+
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const htmlElement = document.documentElement;
+        const sunIcon = themeToggle.querySelector('.fa-sun');
+        const moonIcon = themeToggle.querySelector('.fa-moon');
+        const themeTexts = themeToggle.querySelectorAll('.theme-text');
+
+        function applyTheme(theme) {
+            htmlElement.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            if (theme === 'dark') {
+                sunIcon.style.display = 'none';
+                themeTexts[0].style.display = 'none';
+                moonIcon.style.display = 'inline-block';
+                themeTexts[1].style.display = 'inline-block';
+                themeToggle.classList.add('dark-active');
+                themeToggle.classList.remove('light-active');
+            } else {
+                sunIcon.style.display = 'inline-block';
+                themeTexts[0].style.display = 'inline-block';
+                moonIcon.style.display = 'none';
+                themeTexts[1].style.display = 'none';
+                themeToggle.classList.add('light-active');
+                themeToggle.classList.remove('dark-active');
+            }
+        }
+
+        let currentTheme = localStorage.getItem('theme');
+        const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+        if (currentTheme) {
+            applyTheme(currentTheme);
+        } else if (prefersDarkScheme.matches) {
+            applyTheme('dark');
+        } else {
+            applyTheme('light');
+        }
+
+        themeToggle.addEventListener('click', () => {
+            let newTheme = htmlElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            applyTheme(newTheme);
+        });
+
+        prefersDarkScheme.addEventListener('change', (e) => {
+            if (!localStorage.getItem('theme')) {
+                 applyTheme(e.matches ? 'dark' : 'light');
+            }
+        });
+    </script>
+</body>
+</html>
