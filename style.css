@@ -1,0 +1,207 @@
+/* style.css */
+:root {
+    /* Light Theme Variables */
+    --bg-color: #fcf8e3;
+    --text-color: #8B7355; /* Original Dark Beige/Tan */
+    --container-bg: #f5f0e1;
+    --container-border: #e0d8c4;
+    --container-shadow: rgba(181, 136, 99, 0.15);
+    --heading-border-color: #d4c8a9;
+    --profile-pic-border: #d4c8a9;
+    --link-color: #70543E;
+    --link-hover-color: #5a4431;
+    --icon-color: #8B7355; /* Same as text or can be specific */
+    --button-bg: #d4c8a9;
+    --button-text: #5a4431;
+    --button-hover-bg: #c8bda0;
+}
+
+[data-theme="dark"] {
+    /* Dark Theme Variables */
+    --bg-color: #2c2821; /* Dark desaturated brown/khaki */
+    --text-color: #d4c8a9; /* Light beige/off-white */
+    --container-bg: #3a332a; /* Slightly lighter dark */
+    --container-border: #4a433a; /* Darker border for subtle separation */
+    --container-shadow: rgba(0, 0, 0, 0.25); /* Darker, more neutral shadow */
+    --heading-border-color: #5a4f40; /* Muted dark border */
+    --profile-pic-border: #5a4f40;
+    --link-color: #b8a28a; /* Lighter tan for links */
+    --link-hover-color: #cfbea7;
+    --icon-color: #d4c8a9;
+    --button-bg: #5a4f40;
+    --button-text: #d4c8a9;
+    --button-hover-bg: #6b5f4f;
+}
+
+body {
+    font-family: sans-serif;
+    line-height: 1.5;
+    margin: 0;
+    padding: 30px 20px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+    max-width: 650px;
+    width: 100%;
+    margin: 0;
+    background: var(--container-bg);
+    padding: 20px 35px;
+    border-radius: 10px;
+    box-shadow: 0 5px 20px var(--container-shadow);
+    border: 1px solid var(--container-border);
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+h1, h2 {
+    padding-bottom: 4px;
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: var(--text-color); /* Ensure headings also use text color variable */
+}
+
+h1 {
+    text-align: center;
+    border-bottom: none;
+    font-size: 2.2em;
+    margin-bottom: 25px;
+}
+
+h2 {
+    border-bottom: 2px solid var(--heading-border-color);
+    font-size: 1.6em;
+    transition: border-color 0.3s ease;
+}
+
+/* --- About Me Section Layout --- */
+#about {
+     display: flex;
+     align-items: center;
+     gap: 25px;
+     margin-bottom: 25px;
+}
+.profile-pic {
+     display: block;
+     width: 160px;
+     height: 160px;
+     border-radius: 8px;
+     object-fit: cover;
+     border: 3px solid var(--profile-pic-border);
+     flex-shrink: 0;
+     transition: border-color 0.3s ease;
+}
+.about-content {
+     flex-grow: 1;
+}
+.about-content h2 {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+.about-content p {
+     font-size: 1.0em;
+     margin-bottom: 0;
+     margin-top: 0;
+}
+
+a {
+    color: var(--link-color);
+    text-decoration: none;
+    font-weight: bold;
+    word-break: break-word;
+    transition: color 0.3s ease;
+}
+a:hover, a:focus {
+    color: var(--link-hover-color);
+    text-decoration: underline;
+}
+a.copy-link {
+    cursor: pointer;
+}
+
+/* --- Grid Layout (Interests and Contact) --- */
+.contact-grid {
+    list-style: none;
+    padding-left: 0;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.contact-grid li {
+    width: 50%;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+}
+.contact-grid li:nth-child(odd) {
+    padding-right: 15px;
+}
+
+#interests {
+     margin-bottom: 25px;
+}
+
+.fa-fw {
+     margin-right: 8px;
+     font-size: 1.0em;
+     width: 1.2em;
+     text-align: center;
+     flex-shrink: 0;
+     color: var(--icon-color); /* Use icon color variable */
+     transition: color 0.3s ease;
+}
+
+footer {
+    text-align: center;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1px solid var(--container-border); /* Use container border for consistency */
+    font-size: 0.9em;
+    transition: border-color 0.3s ease;
+}
+.inline-icon {
+     width: 18px;
+     height: 18px;
+     vertical-align: middle;
+     margin-right: 8px;
+     /* For SVG icons, you might need to set fill: var(--icon-color); */
+}
+
+/* Theme Toggle Button Style */
+#themeToggle {
+    position: fixed; /* Or absolute, depending on where you place it */
+    top: 15px;
+    right: 20px;
+    padding: 8px 12px;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: 1px solid var(--container-border);
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.9em;
+    z-index: 1000;
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+#themeToggle:hover {
+    background-color: var(--button-hover-bg);
+}
+#themeToggle .fa-sun,
+#themeToggle .fa-moon {
+    margin-right: 5px;
+}
+
+/* Hide one icon based on theme (JS will toggle this class on the button or icons) */
+/* Example: if button has class "dark-active", hide sun, show moon */
+.dark-active .fa-sun { display: none; }
+.light-active .fa-moon { display: none; }
+/* Default (light) show sun, hide moon if no specific active class */
+#themeToggle .fa-moon { display: none; }
+#themeToggle.dark-active .fa-moon { display: inline-block; }
+#themeToggle.dark-active .fa-sun { display: none; }
