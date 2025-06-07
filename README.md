@@ -46,8 +46,8 @@ To run this project locally:
     ```bash
     cd website
     ```
-3.  **Open `index.html` in your browser:**
-    If it's a simple static site, you can usually just open the `index.html` file directly in your web browser.
+3.  **Open `me.html` in your browser:**
+    If it's a simple static site, you can usually just open the `me.html` file directly in your web browser.
 
     <!-- OR -->
 
