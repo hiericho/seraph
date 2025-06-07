@@ -1,20 +1,18 @@
 <!DOCTYPE html>
-<!-- data-theme attribute will be managed by JavaScript -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About me</title>
+    <title>About Me</title> <!-- Updated Title -->
 
     <!-- Favicon -->
-    <link rel="icon" href="static/toro.webp" type="image/webp">
+    <link rel="icon" href="static/toro.jpg" type="image/png">
 
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <!-- Link to your external stylesheet -->
     <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
     <!-- Theme Toggle Button -->
@@ -24,21 +22,22 @@
     </button>
 
     <div class="container">
-                <header class="page-header">
+
+        <header class="page-header">
             <nav class="main-nav">
-                <a href="me.html" class="active"><i class="fa-solid fa-house fa-fw"></i>Home</a>
+                <a href="me.html" class="active"><i class="fa-solid fa-house fa-fw"></i>Home</a> <!-- Changed to me.html and active -->
                 <a href="projects.html"><i class="fa-solid fa-briefcase fa-fw"></i>Projects</a>
                 <a href="contact.html"><i class="fa-solid fa-envelope fa-fw"></i>Contact</a>
             </nav>
+            <h1>
+                 <i class="fa-solid fa-cat fa-fw"></i> Hello!
+            </h1>
         </header>
-        <h1>
-             <i class="fa-solid fa-cat fa-fw"></i> Hello!
-        </h1>
+
         <section id="about">
             <img src="static/me.png" alt="A person with a cat hat, wearing all beige clothing and using their hand to hide their face." class="profile-pic">
             <div class="about-content">
                 <h2><i class="fa-solid fa-paw fa-fw"></i>About Me</h2>
-                
                 <p>
                     Hello! I'm Hiericho (pronounced like <i>Jericho</i>).<br>
                     I'm a 21-year-old undergrad electronics technician passionate about <b>programming, coding, and technology</b>.<br>
@@ -49,9 +48,10 @@
                 </p>
             </div>
         </section>
+
         <section id="interests">
             <h2><i class="fa-solid fa-seedling fa-fw"></i>Interests / Hobbies</h2>
-            <ul class="contact-grid">
+            <ul class="contact-grid"> <!-- Reusing .contact-grid for similar styling, can rename if needed -->
                 <li><i class="fa-solid fa-code fa-fw"></i>Programming!</li>
                 <li><i class="fa-solid fa-language fa-fw"></i>Learning languages!</li>
                 <li><i class="fa-solid fa-book-open fa-fw"></i>Reading!</li>
@@ -63,26 +63,24 @@
         </footer>
     </div>
 
-    <!-- JavaScript for Copy to Clipboard AND Theme Toggle -->
+    <!-- JavaScript for Copy to Clipboard (if used on this page) AND Theme Toggle -->
     <script>
-        // Copy to Clipboard Function
-        function copyToClipboard(text) {
-            navigator.clipboard.writeText(text).then(function() {
-                alert("Discord username copied: " + text);
-            }, function(err) {
-                alert('Could not copy text: ' + err);
-            });
-        }
+        // Copy to Clipboard Function (Only if you have copyable elements here)
+        // function copyToClipboard(text) {
+        //     navigator.clipboard.writeText(text).then(function() {
+        //         alert("Copied: " + text);
+        //     }, function(err) {
+        //         alert('Could not copy text: ' + err);
+        //     });
+        // }
 
         // Theme Toggle Functionality
         const themeToggle = document.getElementById('themeToggle');
-        const htmlElement = document.documentElement; // Target the <html> element
+        const htmlElement = document.documentElement;
         const sunIcon = themeToggle.querySelector('.fa-sun');
         const moonIcon = themeToggle.querySelector('.fa-moon');
         const themeTexts = themeToggle.querySelectorAll('.theme-text');
 
-
-        // Function to apply the theme
         function applyTheme(theme) {
             htmlElement.setAttribute('data-theme', theme);
             localStorage.setItem('theme', theme);
@@ -93,7 +91,6 @@
                 themeTexts[1].style.display = 'inline-block';
                 themeToggle.classList.add('dark-active');
                 themeToggle.classList.remove('light-active');
-
             } else {
                 sunIcon.style.display = 'inline-block';
                 themeTexts[0].style.display = 'inline-block';
@@ -104,7 +101,6 @@
             }
         }
 
-        // Check for saved theme in localStorage or OS preference
         let currentTheme = localStorage.getItem('theme');
         const prefersDarkScheme = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -113,24 +109,19 @@
         } else if (prefersDarkScheme.matches) {
             applyTheme('dark');
         } else {
-            applyTheme('light'); // Default to light
+            applyTheme('light');
         }
 
-        // Event listener for the toggle button
         themeToggle.addEventListener('click', () => {
             let newTheme = htmlElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
             applyTheme(newTheme);
         });
 
-        // Listen for OS theme changes (optional, if you want it to adapt dynamically without manual toggle overriding)
         prefersDarkScheme.addEventListener('change', (e) => {
-            // Only apply if no theme is manually set in localStorage,
-            // or if you want OS preference to always override if it changes
             if (!localStorage.getItem('theme')) {
                  applyTheme(e.matches ? 'dark' : 'light');
             }
         });
-
     </script>
 
 </body>

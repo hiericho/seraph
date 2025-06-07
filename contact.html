@@ -6,7 +6,7 @@
     <title>Contact</title>
 
     <!-- Favicon -->
-    <link rel="icon" href="static/toro.webp" type="image/webp">
+    <link rel="icon" href="static/toro.jpg" type="image/png">
 
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -24,7 +24,7 @@
     <div class="container">
         <header class="page-header">
             <nav class="main-nav">
-                <a href="me.html"><i class="fa-solid fa-house fa-fw"></i>Home</a>
+                <a href="me.html"><i class="fa-solid fa-house fa-fw"></i>Home</a> <!-- Points to me.html -->
                 <a href="projects.html"><i class="fa-solid fa-briefcase fa-fw"></i>Projects</a>
                 <a href="contact.html" class="active"><i class="fa-solid fa-envelope fa-fw"></i>Contact</a>
             </nav>
@@ -32,7 +32,6 @@
         </header>
 
         <section id="contact-info">
-            <!-- This section is similar to the one on me.html -->
             <h2><i class="fa-solid fa-paper-plane fa-fw"></i>Connect With Me</h2>
             <p>
                 You can find me online or reach out through the following channels:
@@ -55,14 +54,16 @@
                     <i class="fa-brands fa-instagram fa-fw"></i>
                     <a href="https://instagram.com/hieraltair" target="_blank" rel="noopener noreferrer">Instagram (@hieraltair)</a>
                 </li>
+                <!-- Example LinkedIn (Uncomment and fill if you use LinkedIn) -->
+                <!--
                 <li>
                     <i class="fa-brands fa-linkedin fa-fw"></i>
-                    <a href="https://www.linkedin.com/in/hiericho-vieytes-norambuena-256744365/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="YOUR_LINKEDIN_PROFILE_URL" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 </li>
+                -->
             </ul>
 
-            <!-- Optional: A brief message about response times or preferred contact method -->
-            <p style="text-align: center; margin-top: 25px; opacity: 0.8; font-size: 0.9em;">
+            <p class="centered-responsive-note"> <!-- Added class for potential specific styling -->
                 I'm usually most responsive via Email or Discord.
             </p>
         </section>
@@ -72,14 +73,26 @@
         </footer>
     </div>
 
-    <!-- JavaScript (Same as other pages for theme toggle and copy to clipboard) -->
+    <!-- JavaScript (Theme Toggle and Copy to Clipboard) -->
     <script>
         // Copy to Clipboard Function
         function copyToClipboard(text) {
             navigator.clipboard.writeText(text).then(function() {
                 alert("Discord username copied: " + text);
             }, function(err) {
-                alert('Could not copy text: ' + err);
+                // Fallback for older browsers or if navigator.clipboard is not available
+                // You could use a temporary textarea element here
+                try {
+                    const textArea = document.createElement('textarea');
+                    textArea.value = text;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(textArea);
+                    alert("Discord username copied (fallback): " + text);
+                } catch (fallbackErr) {
+                    alert('Could not copy text: ' + (err || fallbackErr));
+                }
             });
         }
 
@@ -133,4 +146,4 @@
         });
     </script>
 </body>
-</html> 
+</html>

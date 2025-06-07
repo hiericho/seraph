@@ -41,7 +41,7 @@ body {
     font-family: sans-serif;
     line-height: 1.5;
     margin: 0;
-    padding: 20px; /* Reduced body padding */
+    padding: 20px;
     background-color: var(--bg-color);
     color: var(--text-color);
     display: flex;
@@ -53,61 +53,70 @@ body {
 }
 
 .container {
-    max-width: 700px; /* Slightly wider if needed */
+    max-width: 700px;
     width: 100%;
     background: var(--container-bg);
-    padding: 25px 25px; /* Adjusted padding */
-    border-radius: 12px; /* Slightly larger radius for container */
+    padding: 25px 30px;
+    border-radius: 12px;
     box-shadow: 0 5px 20px var(--container-shadow);
     border: 1px solid var(--container-border);
     transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
-    flex-grow: 1;
+    flex-grow: 1; /* Allows container to take up space to push footer */
 }
 
-h1, h2 {
-    padding-bottom: 4px;
-    margin-top: 0;
-    margin-bottom: 12px;
-    color: var(--text-color);
-    text-align: start; /* Default for main H1 and section H2s */
+/* Page Header (Contains Nav and Main H1) */
+.page-header {
+    margin-bottom: 30px;
 }
-
-h1 { /* Main page title (e.g., "Welcome...", "My Projects", "Get in Touch") */
+.page-header h1 { /* Main page title (e.g., "Welcome...", "My Projects", "Get in Touch") */
     text-align: center;
     border-bottom: none;
-    font-size: 2em; /* Adjusted font size */
-    margin-bottom: 25px;
+    font-size: 2em;
+    margin-top: 20px; /* Space between nav and H1 */
+    margin-bottom: 0; /* Reset since page-header has margin-bottom */
+    color: var(--text-color);
 }
 
 h2 { /* Section titles (e.g., "About Me", "Connect With Me") */
     border-bottom: 2px solid var(--heading-border-color);
-    font-size: 1.5em; /* Adjusted font size */
+    font-size: 1.5em;
     transition: border-color 0.3s ease;
-    text-align: start; /* Default for section H2s */
-    margin-bottom: 15px; /* Added more space below H2 */
+    text-align: left;
+    margin-top: 0; /* Reset if it's the first element in a section */
+    margin-bottom: 15px;
+    color: var(--text-color);
+    padding-bottom: 4px;
 }
 
 /* --- About Me Section Layout --- */
 #about {
      display: flex;
+     flex-wrap: wrap; /* Allow wrapping on small screens */
      align-items: center;
      gap: 25px;
      margin-bottom: 25px;
 }
 .profile-pic {
      display: block;
-     width: 165px;
-     height: 165px;
+     width: 160px;
+     height: 160px;
      border-radius: 8px;
      object-fit: cover;
-     border: 4px solid var(--profile-pic-border);
+     border: 3px solid var(--profile-pic-border);
      flex-shrink: 0;
      transition: border-color 0.3s ease;
+     margin: 0 auto 15px auto; /* Center on small screens when wrapping */
+}
+@media (min-width: 500px) { /* Adjust breakpoint as needed */
+    .profile-pic {
+        margin: 0; /* Reset margin for side-by-side layout */
+    }
 }
 .about-content {
      flex-grow: 1;
+     min-width: 250px; /* Prevent text from getting too squeezed */
 }
 .about-content h2 {
     margin-top: 0;
@@ -115,10 +124,13 @@ h2 { /* Section titles (e.g., "About Me", "Connect With Me") */
 }
 .about-content p {
      font-size: 1.0em;
-     margin-bottom: 0;
-     margin-top: 0;
-     text-align: justify; /* Ensure paragraphs within about are left-aligned */
+     margin-bottom: 1em;
+     text-align: left;
 }
+.about-content p:last-child {
+    margin-bottom: 0;
+}
+
 
 a {
     color: var(--link-color);
@@ -136,21 +148,29 @@ a.copy-link {
 }
 
 /* --- General Content Sections --- */
-#about, #interests, #contact-info, #project-list, .page-header + section {
-    flex-shrink: 0;
-    width: 100%; /* Ensure sections take full width of container */
+section { /* General styling for all <section> elements */
+    margin-bottom: 30px; /* Space between sections */
 }
-#project-list, #contact-info { /* Sections that might be short but need to push footer */
+section:last-of-type {
+    margin-bottom: 0; /* No margin for the last section before footer */
+}
+
+#about, #interests, #contact-info, #project-list, #quick-contact, .page-header + section {
+    flex-shrink: 0;
+    width: 100%;
+}
+/* Ensure these sections can grow if they are the main content and short */
+#project-list, #contact-info, #interests {
     flex-grow: 1;
 }
 
 /* Default paragraph alignment within sections */
 section p {
     text-align: left;
-    margin-bottom: 1em; /* Add default bottom margin to paragraphs */
+    margin-bottom: 1em;
 }
 section p:last-child {
-    margin-bottom: 0; /* Remove bottom margin from last paragraph in a section */
+    margin-bottom: 0;
 }
 
 
@@ -158,37 +178,35 @@ section p:last-child {
 .contact-grid {
     list-style: none;
     padding-left: 0;
-    margin-top: 20px;
-    margin-bottom: 25px; /* Increased bottom margin */
+    margin-top: 15px; /* Space from paragraph above */
+    margin-bottom: 15px;
     display: flex;
     flex-wrap: wrap;
-    gap: 15px 20px; /* Row gap, Column gap */
-    justify-content: justify; /* Center grid items */
+    gap: 10px 15px; /* Row gap, Column gap */
+    justify-content: center;
 }
 .contact-grid li {
     box-sizing: border-box;
     display: flex;
     align-items: center;
-    flex-basis: calc(50% - 10px); /* Allow natural sizing */
-    flex-grow: 0; /* Don't force growth */
+    flex-grow: 0;
     flex-shrink: 1;
-    /* To ensure items don't get too small and look good when centered: */
-    min-width: 200px; /* Example: adjust based on typical content length */
-    padding: 5px 0; /* Add some vertical padding to list items */
+    min-width: 180px; /* Adjust based on content */
+    padding: 5px 0;
 }
-.contact-grid li .fa-fw { /* Ensure icon aligns with text */
-    flex-shrink: 0;
+.contact-grid li .fa-fw {
+    flex-shrink: 0; /* Prevent icon from shrinking */
+    margin-right: 8px; /* Ensure space for icon */
 }
 
-/* Specific alignments for Contact page based on screenshot */
+/* Specific alignments for Contact page */
 #contact-info > h2,
-#contact-info > p:first-of-type {
+#contact-info > p:first-of-type { /* Paragraph directly after h2 */
     text-align: left;
     width: 100%;
 }
-/* For the "I'm usually most responsive..." paragraph */
 #contact-info > p.centered-responsive-note,
-#contact-info > p:last-of-type:not(:first-of-type) { /* Target last p if not also first */
+#contact-info > p:last-of-type:not(:first-of-type) { /* Target last p if not also first (e.g. if h2 and intro p were removed) */
     text-align: center;
     width: 100%;
     margin-top: 25px;
@@ -196,29 +214,41 @@ section p:last-child {
     font-size: 0.9em;
 }
 
-
 #interests {
      margin-bottom: 25px;
 }
-#interests .contact-grid li { /* Style for interests list if different */
-    min-width: auto; /* Allow interests to be smaller if needed */
-    flex-basis: auto;
+#interests .contact-grid {
+    justify-content: flex-start; /* Interests might look better left-aligned */
+}
+#interests .contact-grid li {
+    min-width: auto;
+}
+
+/* Quick Contact / CTA on me.html */
+#quick-contact {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--container-border);
+}
+#quick-contact p {
+    text-align: center; /* Override default section p alignment */
+    margin-bottom: 15px;
 }
 
 
-.fa-fw {
+.fa-fw { /* Ensure consistent default for fixed-width icons if not overridden */
      margin-right: 8px;
      font-size: 1.0em;
-     width: 1.2em;
+     width: 1.2em; /* Font Awesome's intended width for fa-fw */
      text-align: center;
-     flex-shrink: 0;
      color: var(--icon-color);
      transition: color 0.3s ease;
 }
 
 footer {
     text-align: center;
-    margin-top: auto;
+    margin-top: auto; /* Pushes footer to bottom of flex container */
     padding-top: 20px;
     padding-bottom: 10px;
     border-top: 1px solid var(--container-border);
@@ -227,7 +257,7 @@ footer {
     width: 100%;
     box-sizing: border-box;
 }
-.inline-icon {
+.inline-icon { /* For small inline SVG or image icons if used */
      width: 18px;
      height: 18px;
      vertical-align: middle;
@@ -236,8 +266,8 @@ footer {
 
 /* Theme Toggle Button Style */
 #themeToggle {
-    align-self: flex-end;
-    margin: 0 0 15px 0; /* Placed above container if body is flex-column */
+    align-self: flex-end; /* Aligns to right if body is flex column & button is direct child */
+    margin: 0 0 15px 0; /* Position above container */
     padding: 8px 12px;
     background-color: var(--button-bg);
     color: var(--button-text);
@@ -245,7 +275,7 @@ footer {
     border-radius: 5px;
     cursor: pointer;
     font-size: 0.9em;
-    z-index: 1000;
+    z-index: 1000; /* Ensure it's on top */
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
 #themeToggle:hover {
@@ -255,16 +285,16 @@ footer {
 #themeToggle .fa-moon {
     margin-right: 5px;
 }
-#themeToggle .fa-moon { display: none; }
-#themeToggle.dark-active .fa-moon { display: inline-block; }
-#themeToggle.dark-active .fa-sun { display: none; }
+#themeToggle .fa-moon { display: none; } /* Initially hide moon */
+#themeToggle.dark-active .fa-moon { display: inline-block; } /* Show moon in dark mode */
+#themeToggle.dark-active .fa-sun { display: none; } /* Hide sun in dark mode */
 
 /* --- Main Navigation --- */
 .main-nav {
     display: flex;
     justify-content: center;
-    gap: 15px;
-    margin-bottom: 30px;
+    gap: 10px; /* Reduced gap for smaller buttons */
+    margin-bottom: 0; /* Page header handles bottom margin */
     padding-bottom: 0;
     border-bottom: none;
     flex-wrap: wrap;
@@ -273,42 +303,44 @@ footer {
 .main-nav a {
     text-decoration: none;
     color: var(--text-color);
-    background-color: var(--bg-color);
+    background-color: var(--bg-color); /* Match body background for nav buttons */
     border: 1px solid var(--container-border);
-    padding: 10px 15px; /* Adjusted padding */
-    border-radius: 8px; /* Adjusted radius */
+    padding: 8px 12px; /* Adjusted padding for smaller buttons */
+    border-radius: 6px; /* Adjusted radius */
     font-weight: bold;
-    font-size: 0.95em; /* Adjusted font size */
+    font-size: 0.9em; /* Adjusted font size */
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 90px; /* Adjusted min-width */
+    min-width: 80px; /* Adjusted min-width */
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
 }
 .main-nav a .fa-fw {
-    margin-right: 6px; /* Adjusted margin */
+    margin-right: 6px;
+    font-size: 0.95em; /* Icon size relative to button font */
+    color: inherit; /* Icon color matches button text color */
 }
 
 .main-nav a:hover,
 .main-nav a:focus {
     color: var(--link-hover-color);
-    background-color: var(--container-border);
+    background-color: var(--container-border); /* Subtle hover background */
     text-decoration: none;
     transform: translateY(-2px);
-    box-shadow: 0 4px 10px var(--container-shadow);
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08); /* Softer shadow */
 }
 
 .main-nav a.active {
     color: var(--nav-active-text);
     background-color: var(--nav-active-bg);
-    border-color: var(--nav-active-bg); /* Match border with background */
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    pointer-events: none;
+    border-color: var(--nav-active-bg);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1); /* Inner shadow for active state */
+    pointer-events: none; /* Disable clicking active link */
 }
-.main-nav a.active:hover {
+.main-nav a.active:hover { /* Override hover for active link */
     transform: none;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
 }
 .main-nav a.active .fa-fw {
     color: inherit;
@@ -318,22 +350,22 @@ footer {
 /* --- Project List & Squares --- */
 #project-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Further reduced min size for squares */
-    gap: 20px; /* Slightly reduced gap */
-    margin-top: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 20px;
+    margin-top: 20px; /* Space from page H1 */
 }
 
 .project-square {
-    background-color: var(--container-bg);
+    background-color: var(--bg-color); /* Slightly different from container, or use var(--container-bg) */
     border: 1px solid var(--container-border);
-    border-radius: 10px; /* Adjusted radius */
-    padding: 15px; /* Adjusted padding */
+    border-radius: 12px;
+    padding: 15px;
     text-align: center;
     position: relative;
-    aspect-ratio: 2 / 1;
-    display: flex;
-    flex-direction: row-reverse;
-    transition: transform 0.3s ease-in-out, box-shadow 0.5s ease-in-out;
+    aspect-ratio: 1 / 1;
+    display: flex; /* Using flex for the .project-square itself */
+    flex-direction: column; /* To stack its direct children (main-link and github-link) */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
     overflow: hidden;
 }
 
@@ -344,23 +376,24 @@ footer {
 }
 
 .project-square-main-link {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    display: flex; /* This is the clickable area, make it flex */
+    flex-direction: column; /* Stack its content vertically */
+    justify-content: center; /* Center content vertically */
+    align-items: center;   /* Center content horizontally */
     text-decoration: none;
     color: inherit;
     width: 100%;
     height: 100%;
-    padding-bottom: 20px; /* Space for GitHub icon */
+    padding-bottom: 30px; /* Increased padding to ensure GitHub icon doesn't overlap text */
+    box-sizing: border-box; /* Include padding in height calculation */
 }
 
 .project-square-icon-container {
-    margin-bottom: 10px; /* Reduced margin */
+    margin-bottom: 10px;
 }
 
 .project-square-icon-container i {
-    font-size: 2.5em; /* Adjusted icon size */
+    font-size: 2.5em;
     color: var(--link-color);
     transition: transform 0.2s ease;
 }
@@ -371,7 +404,7 @@ footer {
 }
 
 .project-square-title {
-    font-size: 1.1em; /* Adjusted font size */
+    font-size: 1.1em;
     color: var(--text-color);
     margin-top: 0;
     margin-bottom: 5px;
@@ -380,31 +413,35 @@ footer {
 
 .project-square-tech {
     display: block;
-    font-size: 0.75em; /* Adjusted font size */
+    font-size: 0.75em;
     color: var(--text-color);
     opacity: 0.7;
-    margin-bottom: 6px; /* Adjusted margin */
+    margin-bottom: 6px;
     line-height: 1.3;
-    max-height: 2.6em;
+    max-height: 2.6em; /* Approx 2 lines */
     overflow: hidden;
     text-overflow: ellipsis;
+    width: 90%; /* Prevent text from hitting edges */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .project-square-action-text {
-    font-size: 0.85em; /* Adjusted font size */
+    font-size: 0.85em;
     color: var(--link-color);
     opacity: 0.8;
-    margin-top: auto; /* Pushes action text towards the bottom */
+    margin-top: auto; /* Pushes action text towards the bottom of the flex container (main-link) */
 }
 
 .project-square-github-link {
-    position: absolute;
-    bottom: 12px; /* Adjusted position */
-    right: 12px;  /* Adjusted position */
+    position: absolute; /* Positioned relative to .project-square */
+    bottom: 10px; /* Adjusted position */
+    right: 10px;  /* Adjusted position */
     color: var(--icon-color);
-    font-size: 1.3em; /* Adjusted icon size */
+    font-size: 1.3em;
     opacity: 0.6;
     transition: opacity 0.2s ease, color 0.2s ease, transform 0.2s ease;
+    padding: 3px; /* Add a little padding for easier clicking */
 }
 
 .project-square-github-link:hover,
@@ -413,7 +450,28 @@ footer {
     color: var(--link-hover-color);
     transform: scale(1.1);
 }
-
 .project-square-github-link i {
+    text-decoration: none; /* In case icon itself is a link and gets underline */
+    display: block; /* Ensure it behaves well with padding */
+}
+
+/* Button link style for CTAs (e.g., on me.html) */
+.button-link {
+    display: inline-flex;
+    align-items: center;
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    padding: 8px 15px;
+    border-radius: 5px;
     text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9em;
+    border: 1px solid transparent;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.button-link .fa-fw { margin-right: 8px; color: inherit; }
+.button-link:hover, .button-link:focus {
+    background-color: var(--button-hover-bg);
+    text-decoration: none;
+    color: var(--button-text); /* Ensure text color remains on hover */
 }
