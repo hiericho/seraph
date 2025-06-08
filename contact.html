@@ -52,19 +52,18 @@
                 </li>
                 <li>
                     <i class="fa-brands fa-instagram fa-fw"></i>
-                    <a href="https://instagram.com/hieraltair" target="_blank" rel="noopener noreferrer">Instagram (@hieraltair)</a>
+                    <a href="https://instagram.com/hieraltair" target="_blank" rel="noopener noreferrer">Instagram</a>
                 </li>
-                <!-- Example LinkedIn (Uncomment and fill if you use LinkedIn) -->
-                <!--
                 <li>
                     <i class="fa-brands fa-linkedin fa-fw"></i>
-                    <a href="YOUR_LINKEDIN_PROFILE_URL" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                    <a href="https://www.linkedin.com/in/hiericho-vieytes-norambuena-256744365" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 </li>
-                -->
             </ul>
 
-            <p class="centered-responsive-note"> <!-- Added class for potential specific styling -->
-                I'm usually most responsive via Email or Discord.
+        <p class="centered-responsive-note">
+                I'm usually most active on mornings and afternoons<br>
+                Feel free to reach out, and I'll get back to you as soon as I can!<br>
+                For reference: My 12:00 PM (noon) in is <span id="viewerLocalTime">calculating...</span> your time.
             </p>
         </section>
 
@@ -143,6 +142,109 @@
             if (!localStorage.getItem('theme')) {
                  applyTheme(e.matches ? 'dark' : 'light');
             }
+        });
+                document.addEventListener('DOMContentLoaded', function() {
+            // --- Part 1: Convert "My 12:00 PM UTC-3" to viewer's local time ---
+
+            // Define your reference time: 12:00 PM (noon) in UTC-3
+            const myReferenceHourUTC3 = 12; // 12 for noon
+            const myReferenceMinuteUTC3 = 0;
+
+            // Calculate the equivalent UTC hour.
+            // UTC-3 means 3 hours BEHIND UTC.
+            // So, 12:00 UTC-3 is 12 + 3 = 15:00 UTC.
+            const referenceUTCHour = myReferenceHourUTC3 + 3;
+
+            // Create a Date object for "today" (from the viewer's perspective)
+            // and set its time to our target UTC time.
+            const referenceDateObj = new Date(); // Gets today's date in viewer's local time
+            referenceDateObj.setUTCHours(referenceUTCHour, myReferenceMinuteUTC3, 0, 0); // Set time to 15:00:00.000 UTC
+
+            // Now, format this date object into the viewer's local time string
+            const viewerFormattedTime = referenceDateObj.toLocaleTimeString([], {
+                hour: 'numeric',    // e.g., "1" or "12"
+                minute: '2-digit',  // e.g., "00" or "30"
+                // hour12: true,    // (Optional) true for AM/PM, false for 24-hour. Often default.
+            });
+
+            // Display it
+            const viewerLocalTimeElement = document.getElementById('viewerLocalTime');
+            if (viewerLocalTimeElement) {
+                viewerLocalTimeElement.textContent = viewerFormattedTime;
+
+                // Optional: Show viewer's timezone for clarity
+                try {
+                    const viewerTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                    viewerLocalTimeElement.textContent += ` (${viewerTimeZone})`;
+                } catch (e) {
+                    // Intl.DateTimeFormat might not be supported in very old browsers
+                    console.warn("Could not retrieve viewer's timezone.");
+                }
+            }
+
+
+            // --- (Optional) Part 2: Show your current time in UTC-3 and convert it ---
+            /*
+            const myCurrentTimeUTC3Element = document.getElementById('myCurrentTimeUTC3');
+            const viewerCurrentLocalTimeElement = document.getElementById('viewerCurrentLocalTime');
+
+            if (myCurrentTimeUTC3Element && viewerCurrentLocalTimeElement) {
+                function updateCurrentTimes() {
+                    const now = new Date(); // Current time in viewer's local timezone
+
+                    // To display *your* current time in UTC-3:
+                    // We need to format 'now' as if it were in UTC-3.
+                    // This is best done by creating a new Date object adjusted for UTC-3.
+                    // Current UTC time:
+                    // const nowUTCHours = now.getUTCHours();
+                    // const nowUTCMinutes = now.getUTCMinutes();
+                    // Your current time (UTC-3):
+                    // let myCurrentHours = nowUTCHours - 3;
+                    // if (myCurrentHours < 0) myCurrentHours += 24; // Handle day change
+
+                    // Easier: Use toLocaleString with a specified timeZone
+                    // Requires modern browser support for timeZone option
+                    try {
+                        const myCurrentTimeInUTC3Str = now.toLocaleTimeString('en-US', { // 'en-US' or another locale for formatting
+                            timeZone: 'America/Argentina/Buenos_Aires', // A city in UTC-3. Or 'Etc/GMT+3' (note the inverted sign for Etc/GMT)
+                            hour: 'numeric',
+                            minute: '2-digit',
+                            // hour12: true
+                        });
+                        myCurrentTimeUTC3Element.textContent = myCurrentTimeInUTC3Str;
+                    } catch (e) {
+                        myCurrentTimeUTC3Element.textContent = "N/A";
+                        console.warn("toLocaleTimeString with timeZone option not fully supported.");
+                    }
+
+
+                    // Viewer's current local time is just 'now' formatted
+                    const viewerCurrentFormatted = now.toLocaleTimeString([], {
+                        hour: 'numeric',
+                        minute: '2-digit'
+                    });
+                    viewerCurrentLocalTimeElement.textContent = viewerCurrentFormatted;
+                }
+                updateCurrentTimes();
+                // setInterval(updateCurrentTimes, 60000); // Update every minute if you want it live
+            }
+            */
+
+            // --- If you *really* wanted to show the Epoch timestamp for your 12:00 PM UTC-3 ---
+            // The `referenceDateObj` already represents that specific moment in time.
+            // .getTime() gives milliseconds since epoch, divide by 1000 for seconds.
+            const epochMilliseconds = referenceDateObj.getTime();
+            const epochSeconds = Math.floor(epochMilliseconds / 1000);
+
+            // You could add another span for this if desired:
+            // e.g., <span id="epochForMyNoon"></span>
+            // const epochElement = document.getElementById('epochForMyNoon');
+            // if(epochElement) {
+            //     epochElement.textContent = epochSeconds;
+            // }
+            console.log("Epoch seconds for 'My 12:00 PM UTC-3':", epochSeconds);
+            console.log("Epoch milliseconds for 'My 12:00 PM UTC-3':", epochMilliseconds);
+
         });
     </script>
 </body>

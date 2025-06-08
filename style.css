@@ -72,6 +72,7 @@ body {
 }
 .page-header h1 { /* Main page title (e.g., "Welcome...", "My Projects", "Get in Touch") */
     text-align: center;
+    border-bottom: 2px solid var(--heading-border-color);
     border-bottom: none;
     font-size: 2em;
     margin-top: 20px; /* Space between nav and H1 */
@@ -82,8 +83,8 @@ body {
 h2 { /* Section titles (e.g., "About Me", "Connect With Me") */
     border-bottom: 2px solid var(--heading-border-color);
     font-size: 1.5em;
-    transition: border-color 0.3s ease;
-    text-align: left;
+    transition: border-color 1s ease;
+    text-align: justify; /* Centered for larger screens, left-aligned for smaller */
     margin-top: 0; /* Reset if it's the first element in a section */
     margin-bottom: 15px;
     color: var(--text-color);
@@ -94,7 +95,7 @@ h2 { /* Section titles (e.g., "About Me", "Connect With Me") */
 #about {
      display: flex;
      flex-wrap: wrap; /* Allow wrapping on small screens */
-     align-items: center;
+     align-items: flex-end; /* Align items to the bottom */
      gap: 25px;
      margin-bottom: 25px;
 }
@@ -103,7 +104,7 @@ h2 { /* Section titles (e.g., "About Me", "Connect With Me") */
      width: 160px;
      height: 160px;
      border-radius: 8px;
-     object-fit: cover;
+     object-fit: contain;
      border: 3px solid var(--profile-pic-border);
      flex-shrink: 0;
      transition: border-color 0.3s ease;
@@ -111,24 +112,33 @@ h2 { /* Section titles (e.g., "About Me", "Connect With Me") */
 }
 @media (min-width: 500px) { /* Adjust breakpoint as needed */
     .profile-pic {
-        margin: 0; /* Reset margin for side-by-side layout */
+        margin: 1px; /* Reset margin for side-by-side layout */
     }
 }
 .about-content {
      flex-grow: 1;
      min-width: 250px; /* Prevent text from getting too squeezed */
+    max-width: 500px; /* Limit width for readability */
+    margin-left: auto;
+    margin-right: auto;
 }
 .about-content h2 {
     margin-top: 0;
-    margin-bottom: 8px;
+    margin-bottom: 15px; /* Space between h2 and first paragraph */
+    padding-bottom: 4px; /* Consistent padding for h2 */
+    border-bottom: 2px solid var(--heading-border-color);
+    color: var(--text-color);
 }
 .about-content p {
      font-size: 1.0em;
      margin-bottom: 1em;
-     text-align: left;
+     text-align: justify; /* Justify text for better readability */
+     line-height: 1.6; /* Improved line height for readability */
+     color: var(--text-color);
 }
 .about-content p:last-child {
     margin-bottom: 0;
+    /* No margin for the last paragraph */
 }
 
 
@@ -150,14 +160,19 @@ a.copy-link {
 /* --- General Content Sections --- */
 section { /* General styling for all <section> elements */
     margin-bottom: 30px; /* Space between sections */
+    padding-bottom: 15px; /* Space for bottom border */
+    
 }
 section:last-of-type {
     margin-bottom: 0; /* No margin for the last section before footer */
+    padding-bottom: 0; /* No padding for the last section */
+    border-bottom: none; /* No border for the last section */
 }
 
 #about, #interests, #contact-info, #project-list, #quick-contact, .page-header + section {
     flex-shrink: 0;
     width: 100%;
+    box-sizing: border-box; /* Ensure padding and borders are included in width */
 }
 /* Ensure these sections can grow if they are the main content and short */
 #project-list, #contact-info, #interests {
@@ -168,9 +183,11 @@ section:last-of-type {
 section p {
     text-align: left;
     margin-bottom: 1em;
+    font-size: 1.0em; /* Base font size for paragraphs */ 
 }
 section p:last-child {
     margin-bottom: 0;
+    /* No margin for the last paragraph in a section */
 }
 
 
@@ -187,7 +204,7 @@ section p:last-child {
 }
 .contact-grid li {
     box-sizing: border-box;
-    display: flex;
+    display: center;
     align-items: center;
     flex-grow: 0;
     flex-shrink: 1;
@@ -202,7 +219,7 @@ section p:last-child {
 /* Specific alignments for Contact page */
 #contact-info > h2,
 #contact-info > p:first-of-type { /* Paragraph directly after h2 */
-    text-align: left;
+    text-align: justify; /* Centered for larger screens, left-aligned for smaller */
     width: 100%;
 }
 #contact-info > p.centered-responsive-note,
@@ -212,13 +229,14 @@ section p:last-child {
     margin-top: 25px;
     opacity: 0.8;
     font-size: 0.9em;
+    
 }
 
 #interests {
      margin-bottom: 25px;
 }
 #interests .contact-grid {
-    justify-content: flex-start; /* Interests might look better left-aligned */
+    justify-content: center; /* Interests might look better left-aligned */
 }
 #interests .contact-grid li {
     min-width: auto;
@@ -234,6 +252,9 @@ section p:last-child {
 #quick-contact p {
     text-align: center; /* Override default section p alignment */
     margin-bottom: 15px;
+    font-size: 1.0em; /* Base font size for paragraphs */
+    color: var(--text-color);
+    line-height: 1.6; /* Improved line height for readability */
 }
 
 
@@ -244,6 +265,7 @@ section p:last-child {
      text-align: center;
      color: var(--icon-color);
      transition: color 0.3s ease;
+     vertical-align: middle; /* Aligns icon with text */
 }
 
 footer {
@@ -274,7 +296,7 @@ footer {
     border: 1px solid var(--container-border);
     border-radius: 5px;
     cursor: pointer;
-    font-size: 0.9em;
+    font-size: 1em;
     z-index: 1000; /* Ensure it's on top */
     transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
 }
@@ -312,7 +334,7 @@ footer {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-width: 80px; /* Adjusted min-width */
+    min-width: 190px; /* Adjusted min-width */
     text-align: center;
     transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease, color 0.2s ease;
 }
