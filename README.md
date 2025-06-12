@@ -1,13 +1,8 @@
 # Hiericho's personal archive.
 
 [![Website](https://img.shields.io/badge/Website-Live-brightgreen)](https://hiericho.github.io/about/me.html)
-<!-- Optional: Add other badges like build status, license, etc. if applicable -->
-<!-- e.g., [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE) -->
 
-This repository contains the source code for my personal portfolio website, hosted at [hiericho.github.io/website/](https://hiericho.github.io/website/).
-
-<!-- Optional: Add a screenshot of your website -->
-<!-- ![Screenshot of My Website](./path/to/your/screenshot.png) -->
+This repository contains the source code for my personal portfolio website, hosted at [https://hiericho.github.io/about/me.html]([(https://hiericho.github.io/about/me.html)).
 
 ## ✨ About This Project
 
