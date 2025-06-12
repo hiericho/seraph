@@ -2,7 +2,7 @@
 
 [![Website](https://img.shields.io/badge/Website-Live-brightgreen)](https://hiericho.github.io/about/me.html)
 
-This repository contains the source code for my personal portfolio website, hosted at [https://hiericho.github.io/about/me.html]([(https://hiericho.github.io/about/me.html)).
+This repository contains the source code for my personal portfolio website, hosted at [https://hiericho.github.io/about/me.html](https://hiericho.github.io/about/me.html).
 
 ## ✨ About This Project
 
